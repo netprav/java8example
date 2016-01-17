@@ -74,8 +74,11 @@ public class AppTest
                 List<MyField> variantFields = new ArrayList<MyField>();
                 nextEntityTypeValue.entrySet().forEach((entityEntry)->{
                     Integer entityId = entityEntry.getKey();
-                    variantFields.addAll(entityEntry.getValue().stream().filter((each)
-                            -> each.domainVariants.size()>0).collect(Collectors.toList()));
+                    variantFields.addAll(entityEntry.getValue().stream()
+                            //.filter((each)
+                            //    -> each.domainVariants.size()>0)
+                            .filter(new MyPredicate())
+                            .collect(Collectors.toList()));
                     accuEnityTypeEntry.put(entityId, variantFields);
                 });
             };
